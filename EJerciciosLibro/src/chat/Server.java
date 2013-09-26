@@ -11,6 +11,9 @@ public class Server{
 	Comunicador comunicador;
 	Vector<DataInputStream> entradas;
 	Vector<DataOutputStream> salidas;
+	public static void main(String[] args) {
+		new Server().start();
+	}
 	public Server(){
 		entradas = new Vector<DataInputStream>();
 		salidas  = new Vector<DataOutputStream>();
@@ -37,7 +40,7 @@ class Comunicador implements Runnable{
 					if(server.entradas.get(n).available() > 0){
 						String dato = server.entradas.get(n).readUTF();
 						for(int s = 0; s<server.salidas.size(); s++){
-							server.salidas.get(s).writeUTF(dato);
+							server.salidas.get(s).writeUTF(":"+dato);
 						}
 					}
 				} catch (IOException e) {
