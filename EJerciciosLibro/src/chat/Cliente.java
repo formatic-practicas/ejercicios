@@ -5,8 +5,8 @@ import java.net.*;
 
 public class Cliente {
 	public static int PORT = 4567;
-	//public static String HOST = "127.0.0.1";
-	public static String HOST = "192.168.0.6";
+	public static String HOST = "127.0.0.1";
+	//public static String HOST = "192.168.0.6";
 	public static void main(String[] args) {
 		System.err.println("Intentando conectar con la telefonista");
 		Socket skt = null;

@@ -30,7 +30,7 @@ public class Servidor {
 			ObjectOutputStream salida = new ObjectOutputStream(skt.getOutputStream());
 
 			while (true) {
-				if ((skt.isClosed())) {
+				if (skt.isClosed()) {
 					System.err.println("Conexión cerrada... terminado");
 					System.exit(0);
 				}
