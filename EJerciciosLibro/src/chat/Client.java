@@ -20,7 +20,8 @@ class Lector implements Runnable {
 		while (true) {
 			try {
 				String cad = client.entrada.readUTF();
-				System.out.println(cad);
+				//System.out.println(cad);
+				client.view.muestraMensaje(cad);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -29,11 +30,12 @@ class Lector implements Runnable {
 }
 
 public class Client {
-	private static final String HOST = "127.0.0.1";
+	private static final String HOST = "localhost";
 	private static final int PORT = 1111;
 	Lector lector;
 	DataInputStream entrada;
 	DataOutputStream salida;
+	ClientView view;
 
 	public static void main(String[] args) {
 		new Client();
@@ -50,15 +52,31 @@ public class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+//		while (true) {
+//			String cad = IO.pideCadena(">");
+//			try {
+//				salida.writeUTF(cad);
+//				salida.flush();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+	}
+
+	public void start(){
 		new Thread(lector).start();
-		while (true) {
-			String cad = IO.pideCadena(">");
-			try {
-				salida.writeUTF(cad);
-				salida.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	}
+	public void setView(ClientView view) {
+		this.view = view;
+	}
+
+	public void enviaMensaje(String text) {
+		try {
+			salida.writeUTF(text);
+			salida.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

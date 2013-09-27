@@ -1,4 +1,4 @@
-package chat;
+package basura;
 
 import java.io.*;
 import java.net.*;

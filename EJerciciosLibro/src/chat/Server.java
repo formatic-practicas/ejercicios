@@ -40,11 +40,11 @@ class Comunicador implements Runnable{
 					if(server.entradas.get(n).available() > 0){
 						String dato = server.entradas.get(n).readUTF();
 						for(int s = 0; s<server.salidas.size(); s++){
-							server.salidas.get(s).writeUTF(":"+dato);
+							server.salidas.get(s).writeUTF(dato);
 						}
 					}
-				} catch (IOException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					System.out.println("Algo fué mal en la comunicación");
 				}
 				try {
 					Thread.sleep(20);
