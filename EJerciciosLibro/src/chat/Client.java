@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 
 class Lector implements Runnable {
 	Client client;
+	private boolean running=true;
 
 	public Lector(Client client) {
 		this.client = client;
@@ -17,15 +18,18 @@ class Lector implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (running) {
 			try {
 				String cad = client.entrada.readUTF();
-				//System.out.println(cad);
 				client.view.muestraMensaje(cad);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void stop() {
+		running = false;
 	}
 }
 
@@ -52,16 +56,6 @@ public class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-//		while (true) {
-//			String cad = IO.pideCadena(">");
-//			try {
-//				salida.writeUTF(cad);
-//				salida.flush();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
 	}
 
 	public void start(){
@@ -79,13 +73,16 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
-}
 
-/*
- * clase Lector, capaz de correr en un hilo diferente Se dedica a leer de un
- * flujo de entrada y mostrar en pantalla lo que lee.
- * 
- * El flujo es propiedad del cliente. El Lector ha de conocer a su cliente, es
- * decir, recibirlo en el constructor.
- */
+	public void close() {
+		lector.stop();
+		try {
+			entrada.close();	
+			salida.close();
+		} catch (IOException e) {
+
+		}
+
+	}
+}
 

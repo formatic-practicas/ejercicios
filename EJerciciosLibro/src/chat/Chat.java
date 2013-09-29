@@ -22,6 +22,7 @@ public class Chat {
 		});
 		client.start();
 	}
+
 	public static void main(String[] args) {
 		Chat c = new Chat();
 	}
