@@ -1,0 +1,12 @@
+Examen bloque UF1289 Deseño de elementos software con tecnoloxías baseadas en compoñentes.
+
+Crea un proyecto Java para obtener el nombre de los meses en galego.
+Crea dos programas, Client y Server, cada uno con su main. Ejecuta cada uno por separado.
+El diálogo que establecerán consistirá en que el cliente enviará un número de més y el Server devolverá una
+cadena con el nombre de dicho més en galego. El cliente mostrará el nombre por pantalla y saldrá al sistema.
+El server permanecerá escuchando a más clientes para volver a realizar el mismo trabajo indefinidamente.
+Posibles mejoras: 
+	-Varios idiomas. El cliente enviará el número del més y el nombre del idioma que desea.
+	-Interfaz gráfico. El cliente mostrará un JFrame con un componente para elegir el número de més y otro para
+	el idioma, y un botón "Enviar". La respuesta se mostrará en un componente de tipo JLabel.
+	
